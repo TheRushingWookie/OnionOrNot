@@ -1,0 +1,21 @@
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    background-color: #b0e0e6;
+    text-align: center;
+    font:normal large verdana,arial,helvetica,sans-serif;background-color:white;z-index:1;min-height:100%;
+}
+.wrap {
+   width:600px;
+   margin:0 auto;
+}
+#left {
+    float: left;
+    width: 50%;
+}
+
+
+#right {
+    margin-left: 50%;
+}
