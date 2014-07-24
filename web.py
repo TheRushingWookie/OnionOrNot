@@ -28,7 +28,7 @@ def timer(n):
     	update_submissions()
         time.sleep(n)
 update_submissions()
-t = Thread(target=timer, args=(10,))
+t = Thread(target=timer, args=(3600,))
 t.start()
 @app.route("/get_link")
 def get_link():
