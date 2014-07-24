@@ -20,9 +20,15 @@ def update_submissions():
 	stupid_submissions =  r.get_subreddit('NewsOfTheStupid').get_top_from_month(limit=150)
 	temp_not_submissions = [(link.title, link.url) for link in stupid_submissions] + [(link.title, link.url) for link in temp_not_submissions]
 	temp_onion_submissions = r.get_subreddit('theonion').get_top_from_month(limit=275)
-	temp_onion_submissions = [(link.title, link.url) for link in temp_onion_submissions] + [(post.title, post.link) for post in onion_feed['entries']]
+	bad_onion = [[link.title, link.url] for link in temp_onion_submissions]
+	map(replace_onion, bad_onion)
+	temp_onion_submissions = bad_onion + [[post.title, post.link] for post in onion_feed['entries']]
 	onion_submissions = temp_onion_submissions
 	not_submissions = temp_not_submissions
+def replace_onion(x):
+	if x[0].find(" | The Onion") != -1:
+		x[0] = x[0][:x[0].find("| The Onion")]
+
 def timer(n):
     while True:
     	update_submissions()
