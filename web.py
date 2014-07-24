@@ -7,7 +7,7 @@ from Queue import PriorityQueue
 import json
 app = Flask(__name__,static_url_path='')
 
-onion_feed = feedparser.parse("feed://feeds.feedburner.com/theonion/daily?fmt=xml&max-results=100")
+#onion_feed = feedparser.parse("feed://feeds.feedburner.com/theonion/daily?fmt=xml&max-results=100")
 r = praw.Reddit(user_agent='OnionOrNot')
 not_submissions = r.get_subreddit('nottheonion').get_top_from_month(limit=150)
 stupid_submissions =  r.get_subreddit('NewsOfTheStupid').get_top_from_month(limit=150)
