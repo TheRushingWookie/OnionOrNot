@@ -102,6 +102,8 @@ function get_highscores(){
 		console.log(score)
 			if(score > data[i][0]){
 				name = prompt("You got a highscore! Enter your name.","");
+				if (name.length == 0)
+					name = "Anonymous"
 				set_score(score, name);
 				break;
 			}
