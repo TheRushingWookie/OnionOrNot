@@ -16,11 +16,13 @@ def update_submissions():
 	global onion_submissions, not_submissions
 	onion_feed = feedparser.parse("feed://feeds.feedburner.com/theonion/daily?fmt=xml&max-results=100")
 	r = praw.Reddit(user_agent='OnionOrNot')
-	temp_not_submissions = r.get_subreddit('nottheonion').get_top_from_month(limit=150)
-	stupid_submissions =  r.get_subreddit('NewsOfTheStupid').get_top_from_month(limit=150)
-	temp_not_submissions = [(link.title, link.url) for link in stupid_submissions] + [(link.title, link.url) for link in temp_not_submissions]
-	temp_onion_submissions = r.get_subreddit('theonion').get_top_from_month(limit=275)
-	bad_onion = [[link.title, link.url] for link in temp_onion_submissions]
+	temp_not_submissions = r.get_subreddit('nottheonion').get_top_from_day(limit=100)
+	temp_not_year = r.get_subreddit('nottheonion').get_top_from_year(limit=300)
+	stupid_submissions =  r.get_subreddit('NewsOfTheStupid').get_top_from_month(limit=300)
+	temp_not_submissions = [(link.title, link.url) for link in stupid_submissions] + [(link.title, link.url) for link in temp_not_submissions] + [(link.title, link.url) for link in temp_not_year]
+	temp_onion_submissions = r.get_subreddit('theonion').get_top_from_year(limit=600)
+	temp_onion_day_submissions = r.get_subreddit('theonion').get_top_from_day(limit=10)
+	bad_onion = [[link.title, link.url] for link in temp_onion_submissions] + [[link.title, link.url] for link in temp_onion_day_submissions]
 	map(replace_onion, bad_onion)
 	temp_onion_submissions = bad_onion + [[post.title, post.link] for post in onion_feed['entries']]
 	onion_submissions = temp_onion_submissions
