@@ -4,4 +4,4 @@ It uses a scraping of the subreddits nottheonion and NewsOfTheStupid to find art
 
 To get the onion articles, it uses feedburner.
 
-It is setup as a heroku app.
+It is setup as a heroku app
