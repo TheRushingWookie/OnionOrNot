@@ -9,6 +9,7 @@ function get_new_link(){
 function get_highscores(){
 	return $.getJSON("/get_scores", function(data){
 		$("#board").html(data["scores"]);
+		//test
 	});
 }
 $(document).ready(function() {
